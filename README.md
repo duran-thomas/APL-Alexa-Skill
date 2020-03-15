@@ -1,1 +1,1 @@
-# APL-Alexa-Skill-
+# APL-Alexa-Skill
