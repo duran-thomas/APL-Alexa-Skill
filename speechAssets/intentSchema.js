@@ -22,7 +22,7 @@ const AboutIntentHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AboutIntent';
     },
     handle(handlerInput) {
-        const speakOutput = 'APL class of twenty nineteen, twenty twenty semester 2 project done by Duran Thomas.';
+        const speakOutput = 'APL class of twenty nineteen, twenty twenty semester 2 project done by Duran and Kemar';
         return handlerInput.responseBuilder
             .speak(speakOutput)
             .reprompt('Anything else i can help with')
@@ -45,26 +45,27 @@ const SemanticIntentHandler = {
     }
 };
 
-const HelloWorldIntentHandler = {
-    canHandle(handlerInput) {
-        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
-            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'HelloWorldIntent';
-    },
-    handle(handlerInput) {
-        const speakOutput = 'Hello World!';
-        return handlerInput.responseBuilder
-            .speak(speakOutput)
-            //.reprompt('add a reprompt if you want to keep the session open for the user to respond')
-            .getResponse();
-    }
-};
+// const HelloWorldIntentHandler = {
+//     canHandle(handlerInput) {
+//         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+//             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'HelloWorldIntent';
+//     },
+//     handle(handlerInput) {
+//         const speakOutput = 'Hello World!';
+//         return handlerInput.responseBuilder
+//             .speak(speakOutput)
+//             //.reprompt('add a reprompt if you want to keep the session open for the user to respond')
+//             .getResponse();
+//     }
+// };
+
 const HelpIntentHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.HelpIntent';
     },
     handle(handlerInput) {
-        const speakOutput = 'To learn about this project say, About, for an overview of semantics say, Semantics, to have me solve a lambda equation please say, lambda. '
+        const speakOutput = 'To learn about this project say, About, for an overview of semantics say, Semantics, to have me solve a lambda equation say, lambda. '
         + 'to exit the skill please say, quit.';
 
         return handlerInput.responseBuilder
@@ -73,6 +74,7 @@ const HelpIntentHandler = {
             .getResponse();
     }
 };
+
 const CancelAndStopIntentHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
@@ -86,6 +88,7 @@ const CancelAndStopIntentHandler = {
             .getResponse();
     }
 };
+
 const SessionEndedRequestHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
@@ -145,7 +148,7 @@ const ErrorHandler = {
 exports.handler = Alexa.SkillBuilders.custom()
     .addRequestHandlers(
         LaunchRequestHandler,
-        HelloWorldIntentHandler,
+        //HelloWorldIntentHandler,
         AboutIntentHandler,
         SemanticIntentHandler,
         HelpIntentHandler,
