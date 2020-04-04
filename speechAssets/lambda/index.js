@@ -2,6 +2,7 @@
 // Please visit https://alexa.design/cookbook for additional examples on implementing slots, dialog management,
 // session persistence, api calls, and more.
 const Alexa = require('ask-sdk-core');
+const Lambda = require('lambda-calculus')
 
 const LaunchRequestHandler = {
     canHandle(handlerInput) {
@@ -45,6 +46,24 @@ const SemanticIntentHandler = {
     }
 };
 
+const LambdaIntentHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'LambdaIntent';
+    },
+    handle(handlerInput) {
+        const input = Lambda.fromString("(λa.λb.(a (a b)) λa.λb.(a (a b)))");
+        //const input2 = Lambda.fromString("((λ))")
+        const output = Lambda.reduce(input);
+        
+        const speakOutput = 'Result: ' + Lambda.toString(output);
+        return handlerInput.responseBuilder
+            .speak(speakOutput)
+            .reprompt()
+            .getResponse();
+    }
+};
+
 // const HelloWorldIntentHandler = {
 //     canHandle(handlerInput) {
 //         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
@@ -74,6 +93,7 @@ const HelpIntentHandler = {
             .getResponse();
     }
 };
+
 
 const CancelAndStopIntentHandler = {
     canHandle(handlerInput) {
@@ -142,15 +162,16 @@ const ErrorHandler = {
     }
 };
 
+
 // The SkillBuilder acts as the entry point for your skill, routing all request and response
 // payloads to the handlers above. Make sure any new handlers or interceptors you've
 // defined are included below. The order matters - they're processed top to bottom.
 exports.handler = Alexa.SkillBuilders.custom()
     .addRequestHandlers(
         LaunchRequestHandler,
-        //HelloWorldIntentHandler,
         AboutIntentHandler,
         SemanticIntentHandler,
+        LambdaIntentHandler,
         HelpIntentHandler,
         CancelAndStopIntentHandler,
         SessionEndedRequestHandler,

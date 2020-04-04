@@ -1,0 +1,53 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "a. p. l. project",
+      "intents": [
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": []
+        },
+        {
+          "name": "AboutIntent",
+          "slots": [],
+          "samples": [
+            "about",
+            "what is this project about ",
+            "tell me about this project",
+            "about this project"
+          ]
+        },
+        {
+          "name": "SemanticIntent",
+          "slots": [],
+          "samples": [
+            "semantic",
+            "tell me about semantic",
+            "what is the semantic"
+          ]
+        },
+        {
+          "name": "LambdaIntent",
+          "slots": [],
+          "samples": [
+            "lambda calculus"
+          ]
+        }
+      ],
+      "types": []
+    }
+  },
+  "version": "8"
+}
